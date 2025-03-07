@@ -16,7 +16,13 @@ public class SecurityConfig {
             .cors().and()  // Enable CORS
             .authorizeHttpRequests()
             .requestMatchers("/**").permitAll()  // Allow public access for all endpoints
-            .anyRequest().authenticated(); // All other requests must be authenticated
+            .anyRequest().authenticated() // All other requests must be authenticated
+            .and()
+            .oauth2Login() // Enable OAuth2 login, which will use Google
+            .and()
+            .logout()
+            .permitAll(); // Allow logout
+
         return http.build();
     }
 }

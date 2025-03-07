@@ -14,7 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/banner")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://14.225.29.33:3000" ,"http://zto.com.vn:3000"})
+
 public class BannerController {
 
 	@Autowired
@@ -24,7 +25,7 @@ public class BannerController {
 	private BannerRepository bannerRepository;
 
 	@PostMapping("/add")
-	public ResponseEntity<?> addBanner(@RequestParam("title") String title,
+	public ResponseEntity<?> addBanner(
 			@RequestParam("description") String description, @RequestParam("file") MultipartFile file) {
 		try {
 			// Upload ảnh lên Cloudinary
@@ -32,14 +33,14 @@ public class BannerController {
 
 			// Tạo đối tượng Banner và lưu vào CSDL
 			Banner banner = new Banner();
-			banner.setTitle(title);
+	
 			banner.setDescription(description);
 			banner.setImageUrl(imageUrl);
 			Banner savedBanner = bannerRepository.save(banner);
 
 			// Tạo DTO trả về
 			BannerDTO bannerDTO = new BannerDTO();
-			bannerDTO.setTitle(savedBanner.getTitle());
+		
 			bannerDTO.setDescription(savedBanner.getDescription());
 			bannerDTO.setImageUrl(savedBanner.getImageUrl());
 
@@ -74,7 +75,7 @@ public class BannerController {
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateBanner(@PathVariable Long id, 
-	                                      @RequestParam("title") String title,
+	                                     
 	                                      @RequestParam("description") String description,
 	                                      @RequestParam(value = "file", required = false) MultipartFile file) {
 	    try {
@@ -85,7 +86,7 @@ public class BannerController {
 	        }
 
 	        // Cập nhật thông tin của banner
-	        banner.setTitle(title);
+	  
 	        banner.setDescription(description);
 
 	        // Nếu có ảnh mới, upload ảnh và cập nhật URL
@@ -99,7 +100,7 @@ public class BannerController {
 
 	        // Tạo DTO trả về
 	        BannerDTO bannerDTO = new BannerDTO();
-	        bannerDTO.setTitle(updatedBanner.getTitle());
+	    
 	        bannerDTO.setDescription(updatedBanner.getDescription());
 	        bannerDTO.setImageUrl(updatedBanner.getImageUrl());
 

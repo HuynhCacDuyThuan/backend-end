@@ -1,38 +1,20 @@
 package com.example.demo.modal;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String sub;  
+public class GoogleUser {
+    private String sub;
     private String name;
     private String email;
-    private String phoneNumber;
     private String picture;
-
+    private String phoneNumber;  // Thêm trường số điện thoại
    
-
-    
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	// Getters and Setters
+    // Getters and Setters
     public String getSub() {
         return sub;
     }
 
-    public void setSub(String sub) {
+  
+
+	public void setSub(String sub) {
         this.sub = sub;
     }
 
@@ -52,14 +34,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getPicture() {
         return picture;
     }
@@ -68,5 +42,11 @@ public class User {
         this.picture = picture;
     }
 
-   
+    public String getPhoneNumber() {  // Getter cho số điện thoại
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {  // Setter cho số điện thoại
+        this.phoneNumber = phoneNumber;
+    }
 }

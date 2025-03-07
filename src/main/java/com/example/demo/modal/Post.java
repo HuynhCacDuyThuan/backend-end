@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -20,13 +21,13 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT") // ✅ Chuyển thành LONGTEXT
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT") // ✅ Chuyển thành LONGTEXT
     private String content;
 
-   
+    @Column(length = 500) // ✅ Giới hạn URL ảnh tối đa 500 ký tự
     private String mainImageUrl;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -74,10 +75,9 @@ public class Post {
         this.subtitles = subtitles;
     }
 
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", title=" + title + ", content=" + content + ", mainImageUrl=" + mainImageUrl
-				+ ", subtitles=" + subtitles + "]";
-	}
-    
+    @Override
+    public String toString() {
+        return "Post [id=" + id + ", title=" + title + ", content=" + content + ", mainImageUrl=" + mainImageUrl
+                + ", subtitles=" + subtitles + "]";
+    }
 }

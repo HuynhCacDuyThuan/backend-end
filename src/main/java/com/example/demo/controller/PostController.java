@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 @RestController
 @RequestMapping("/api/posts")
-@CrossOrigin(origins = "http://localhost:3000")  // Ensure CORS is enabled
+@CrossOrigin(origins = {"http://localhost:3000", "http://14.225.29.33:3000" ,"http://zto.com.vn:3000"})
+
 public class PostController {
 
     @Autowired

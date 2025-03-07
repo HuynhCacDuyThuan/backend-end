@@ -8,7 +8,7 @@ public class Subtitle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Lob
     private String subtitle;
 
     private String imageUrl;
