@@ -6,33 +6,33 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "m_model")
+@Table(name = "model")
 @Getter
 @Setter
 public class Model {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "active_flag", nullable = false)
-    private boolean activeFlag = true;
+	private String name;
 
-    @Column(name = "delete_flag", nullable = false)
-    private boolean deleteFlag = false;
+	@Column(name = "active_flag", nullable = false)
+	private boolean activeFlag = true;
 
-    @Column(name = "created_by", nullable = false, updatable = false)
-    private String createdBy = "admin";
-    
-    @Column(name = "created_date", updatable = false)
-    private LocalDateTime createdDate = LocalDateTime.now();
+	@Column(name = "delete_flag", nullable = false)
+	private boolean deleteFlag = false;
 
-    @Column(name = "modified_by")
-    private String modifiedBy;
+	@Column(name = "created_by", nullable = false, updatable = false)
+	private String createdBy = "admin";
 
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate;
-    
+	@Column(name = "created_date", updatable = false)
+	private LocalDateTime createdDate = LocalDateTime.now();
+
+	@Column(name = "modified_by")
+	private String modifiedBy;
+
+	@Column(name = "modified_date")
+	private LocalDateTime modifiedDate;
+
 }

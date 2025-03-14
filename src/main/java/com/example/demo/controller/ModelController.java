@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://14.225.29.33:3000" ,"http://zto.com.vn:3000"})
+@CrossOrigin(origins = {"http://localhost:3000" , "http://14.225.29.33:3000" ,"http://zto.com.vn:3000","https://zto.com.vn","https://api.zto.com.vn"})
 @RestController
 @RequestMapping("/api/models")
 public class ModelController {
@@ -55,6 +55,7 @@ public class ModelController {
         List<Model> models = modelService.getActiveModels();
         return ResponseEntity.ok(models); // Trả về danh sách model có deleteFlag = false
     }
+    
     @PutMapping("/{id}")
     public ResponseEntity<Model> updateModel(@PathVariable("id") Long id, @RequestBody Model model) {
         // Kiểm tra xem model với id có tồn tại không

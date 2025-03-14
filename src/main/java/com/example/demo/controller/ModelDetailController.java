@@ -6,6 +6,7 @@ import com.example.demo.modal.ModelDetail;
 import com.example.demo.repository.ModelDetailRepository;
 import com.example.demo.repository.ModelRepository;
 import com.example.demo.service.ModelDetailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/model-details")
-@CrossOrigin(origins = {"http://localhost:3000", "http://14.225.29.33:3000" ,"http://zto.com.vn:3000"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:3000" , "http://14.225.29.33:3000" ,"http://zto.com.vn:3000","https://zto.com.vn","https://api.zto.com.vn"}, allowCredentials = "true")
 public class ModelDetailController {
 
     @Autowired

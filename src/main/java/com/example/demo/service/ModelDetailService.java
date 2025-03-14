@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.modal.ModelDetail;
 import com.example.demo.repository.ModelDetailRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,11 @@ public class ModelDetailService {
     private ModelDetailRepository modelDetailRepository;
    
     public List<ModelDetail> getAllModelDetails() {
-    	  return modelDetailRepository.findByActiveFlagTrueAndDeleteFlagFalseAndBlockTrue(); // ✅ Fetch only active & non-deleted
+    	  return modelDetailRepository.findByBlockTrueAndActiveFlagTrueAndDeleteFlagFalse(); // ✅ Fetch only active & non-deleted
     }
 
     public List<ModelDetail> getModelDetailsByModelId(Long modelId) {
-    	   return modelDetailRepository.findByModel_IdAndActiveFlagTrueAndDeleteFlagFalseOrBlockTrue(modelId);
+    	   return modelDetailRepository.findByModel_IdAndActiveFlagTrueAndDeleteFlagFalse(modelId);
     }
     public Optional<ModelDetail> getModelDetailById(Long id) {
         return modelDetailRepository.findById(id);
