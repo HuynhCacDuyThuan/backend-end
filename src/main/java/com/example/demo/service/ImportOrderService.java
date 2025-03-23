@@ -6,6 +6,8 @@ import com.example.demo.modal.User;
 import com.example.demo.repository.ImportOrderRepository;
 import com.example.demo.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,6 +47,20 @@ public class ImportOrderService {
         }
         return false;
     }
-   
+    @Transactional
+    public void lockOrder(Long id) {
+        ImportOrder order = importOrderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng với id: " + id));
+        order.setLocked(true);
+        importOrderRepository.save(order);
+    }
+
+    @Transactional
+    public void unlockOrder(Long id) {
+        ImportOrder order = importOrderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng với id: " + id));
+        order.setLocked(false);
+        importOrderRepository.save(order);
+    }
    
 }

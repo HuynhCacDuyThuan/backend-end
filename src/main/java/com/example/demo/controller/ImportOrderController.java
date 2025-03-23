@@ -274,5 +274,23 @@ public class ImportOrderController {
             return ResponseEntity.internalServerError().body("Lỗi khi cập nhật đơn hàng: " + e.getMessage());
         }
     }
+    @PutMapping("/{id}/lock")
+    public ResponseEntity<String> lockOrder(@PathVariable Long id) {
+        try {
+            importOrderService.lockOrder(id);
+            return ResponseEntity.ok("Khóa đơn hàng thành công");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
 
+    @PutMapping("/{id}/unlock")
+    public ResponseEntity<String> unlockOrder(@PathVariable Long id) {
+        try {
+            importOrderService.unlockOrder(id);
+            return ResponseEntity.ok("Mở khóa đơn hàng thành công");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
 }
